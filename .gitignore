@@ -1,0 +1,3 @@
+# Ignorar pruebas de Drupal
+/core/tests/
+/**/latin_9.js
