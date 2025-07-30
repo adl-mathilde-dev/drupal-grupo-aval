@@ -1,0 +1,8 @@
+services:
+  drupal:
+    image: drupal:10-apache
+    container_name: drupal
+    ports:
+      - "8080:80"
+    volumes:
+      - ./drupal:/var/www/html
