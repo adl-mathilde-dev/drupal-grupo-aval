@@ -1,8 +1,20 @@
+version: '3.9'
+
 services:
   drupal:
     image: drupal:10-apache
     container_name: drupal
-    ports:
-      - "8080:80"
+    restart: always
     volumes:
       - ./web:/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drupal.rule=Host(`grupo-aval.pruebasmathilde.com`)"
+      - "traefik.http.routers.drupal.entrypoints=web"
+      - "traefik.http.services.drupal.loadbalancer.server.port=80"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
