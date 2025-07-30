@@ -2,20 +2,20 @@ version: '3.9'
 
 services:
   drupal:
-    build: .
+    image: drupal:10-apache
     container_name: drupal
     restart: always
     volumes:
       - ./web:/var/www/html
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.drupal.rule=Host(`grupo-aval.pruebasmathilde.com`)"
-      - "traefik.http.routers.drupal.entrypoints=websecure"
-      - "traefik.http.routers.drupal.tls.certresolver=letsencrypt"
-      - "traefik.http.services.drupal.loadbalancer.server.port=80"
+      - "traefik.http.routers.drupalgrupoaval.rule=Host(`grupo-aval.pruebasmathilde.com`)"
+      - "traefik.http.routers.drupalgrupoaval.entrypoints=websecure"
+      - "traefik.http.routers.drupalgrupoaval.tls.certresolver=letsencrypt"
+      - "traefik.http.services.drupalgrupoaval.loadbalancer.server.port=80"
     networks:
-      - web
+      - dokploy-network
 
 networks:
-  web:
+  dokploy-network:
     external: true
