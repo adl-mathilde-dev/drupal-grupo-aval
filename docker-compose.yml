@@ -1,18 +1,12 @@
-version: '3.9'
-
 services:
   drupal:
     image: drupal:10-apache
     container_name: drupal
     restart: always
+    ports:
+      - "8081:80"  # Exponemos el puerto 8081 del host al 80 del contenedor
     volumes:
       - ./web:/var/www/html
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.drupalgrupoaval.rule=Host(`grupo-aval.pruebasmathilde.com`)"
-      - "traefik.http.routers.drupalgrupoaval.entrypoints=websecure"
-      - "traefik.http.routers.drupalgrupoaval.tls.certresolver=letsencrypt"
-      - "traefik.http.services.drupalgrupoaval.loadbalancer.server.port=80"
     networks:
       - dokploy-network
 
