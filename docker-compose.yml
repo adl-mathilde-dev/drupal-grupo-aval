@@ -4,7 +4,7 @@ services:
     container_name: drupal
     restart: always
     ports:
-      - "8081:80"  # Exponemos el puerto 8081 del host al 80 del contenedor
+      - "8082:80"  # Exponemos el puerto 8081 del host al 80 del contenedor
     volumes:
       - ./web:/var/www/html
     networks:
